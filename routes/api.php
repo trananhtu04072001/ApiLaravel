@@ -35,4 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
    Route::post('/sanctum/login', [\App\Http\Controllers\v1\SanctumController::class, 'login'])->name('login');
 
    Route::get('/queue' , [\App\Http\Controllers\v1\QueueController::class, 'index']);
+   Route::get('/sendmail' , [\App\Http\Controllers\v1\QueueController::class, 'sendmail']);
+
+
+   Route::resource('Student' , \App\Http\Controllers\v1\DependencyController::class);
 
