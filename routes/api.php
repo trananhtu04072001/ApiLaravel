@@ -39,4 +39,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
    Route::resource('Student' , \App\Http\Controllers\v1\DependencyController::class);
+   Route::resource('author' , \App\Http\Controllers\v1\AuthorController::class);
 

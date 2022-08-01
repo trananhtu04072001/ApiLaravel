@@ -17,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Responsitory\BookInterface',
             'App\Responsitory\BookResponsitory'
         );
+        
+        $this->app->bind(
+            'App\Responsitory\AuthorInterface',
+            'App\Responsitory\AuthorResponsitory'
+        );
     }
 
     /**

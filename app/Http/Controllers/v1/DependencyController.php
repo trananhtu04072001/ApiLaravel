@@ -16,25 +16,21 @@ class DependencyController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $book;
+    /**
+     * @var BookResponsitory
+     */
+    protected $Bookrespon;
 
-     public function __construct(BookInterface $book,BookResponsitory $responsitory)
+    public function __construct(BookInterface $book,BookResponsitory $Bookrespon)
      {
          $this->book = $book;
-         $this->responsitory = $responsitory;
+         $this->Bookrespon = $Bookrespon;
      }
 
     public function index(BookInterface $book)
     {
-        return $book->getAll();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function create()
-    {
+        $data =  $book->getAll();
+        return $this->successResponse($data , 'In ra thành công' , 200);
     }
 
     /**
@@ -46,30 +42,20 @@ class DependencyController extends Controller
     public function store(BookRequest $req , BookInterface $responsitory)
     {
         $data = $req->all();
-        $book = $responsitory->Insert($data);
-        return $this->successResponse($book,'Thành công' , 200);
+        $book = $responsitory->create($data);
+        return $this->successResponse($book,'Thêm Thành công' , 200);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $data = $this->book->find($id);
+        return $this->successResponse($data , 'Tri tiết sách' , 202);
     }
 
     /**
@@ -77,21 +63,23 @@ class DependencyController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(BookRequest $req, $id)
     {
-        //
+        $data = $this->book->update($id , $req->all());
+        return $this->successResponse($data , 'Cập nhật thành công' , 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $data = $this->book->delete($id);
+        return $this->successResponse($data , 'Đã xoá thành công có id: '.$id , 200);
     }
 }

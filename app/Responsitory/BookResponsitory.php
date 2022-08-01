@@ -6,33 +6,14 @@ use App\Models\Book;
 use function is;
 use function is_null;
 
-     class BookResponsitory implements BookInterface {
-         public function Insert(array $data)
+     class BookResponsitory extends EloquentResponsitory implements BookInterface {
+         public function getBook()
          {
-             $book = new Book();
-             $book->title = $data['title'];
-             $book->content = $data['content'];
-             $book->price = $data['price'];
-             return $book->save();
+             return $this->model->get();
          }
 
-         public function getAll()
+         public function getModel()
          {
-             $book = Book::all();
-             return $book;
-         }
-
-         public function Update($id = null)
-         {
-         }
-
-         public function Delete($id = null)
-         {
-             // TODO: Implement Delete() method.
-         }
-
-         public function View($id)
-         {
-             // TODO: Implement View() method.
+             return Book::class;
          }
      }
