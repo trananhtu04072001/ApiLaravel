@@ -12,13 +12,11 @@ class AuthorController extends Controller
 {
 
     protected $authorResponsitory;
+    
 
-    protected $interface;
-
-    public function __construct(AuthorResponsitory $authorResponsitory , AuthorInterface $interface)
+    public function __construct(AuthorInterface $authorResponsitory)
     {
         $this->authorResponsitory = $authorResponsitory;
-        $this->interface = $interface;
     }
 
     /**

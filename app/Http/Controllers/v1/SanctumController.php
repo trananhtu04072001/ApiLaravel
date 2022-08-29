@@ -44,7 +44,7 @@ class SanctumController extends Controller
                 'token_type' => 'Bearer',
             ]);
         }
-        catch (Exception $error) {
+        catch (\Exception $error) {
             return $this->errorResponse($error,'lỗi đăng nhập','500');
         }
     }

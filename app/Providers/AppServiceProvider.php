@@ -17,8 +17,8 @@ class AppServiceProvider extends ServiceProvider
             'App\Responsitory\BookInterface',
             'App\Responsitory\BookResponsitory'
         );
-        
-        $this->app->bind(
+
+        $this->app->singleton(
             'App\Responsitory\AuthorInterface',
             'App\Responsitory\AuthorResponsitory'
         );

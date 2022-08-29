@@ -41,7 +41,7 @@ class InsertPost extends Command
 //        if(Auth::guard('web') != null) {
 //            $post->user_id = Auth::guard('web')-id;
 //        }
-        $post->user_id = 3;
+        $post->user_id = 1;
         $post->save();
         echo "Đã thêm bài viết";
     }
